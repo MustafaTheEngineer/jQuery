@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../Source/jQuery_source.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    label {
+        margin-right: 50px;
+    }
+
+    label,
+    input {
+        font-size: 28px;
+    }
+
+    #alerts {
+        color: red;
+        font-size: 28px;
+    }
+
+    .input-div {
+        text-align: left;
+        margin: 10px 0;
+    }
+
+    .inputs,
+    .labels {
+        display: inline-block;
+    }
+
+    .labels {
+        width: 25%;
+        text-align: left;
+        float: left;
+    }
+
+    .inputs {
+        width: 75%;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px 10px;
+        border: 1px solid #BFBFBF;
+        border-radius: 5px;
+    }
+
+    #container {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    #send-form {
+        margin-top: 40px;
+    }
+
+    #send-form input {
+        width: 100%;
+        font-size: 20px;
+        background-color: green;
+        color: #fff;
+        border: none;
+    }
+
+    #send-form input:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+</style>
+
+<body>
+    <form action="">
+        <div id="container">
+            <div id="alerts">
+
+            </div>
+            <div class="input-div">
+                <div class="labels">
+                    <label for="mail">E-mail</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Your e-mail" name="mail" id="email">
+                </div>
+            </div>
+            <div class="input-div">
+                <div class="labels">
+                    <label for="telefon">Telefon</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Telefon" name="telefon" id="tel">
+                </div>
+            </div>
+            <div class="input-div">
+                <div class="labels">
+                    <label for="parola">Parola</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Parola" name="parola" id="par">
+                </div>
+            </div>
+            <div class="input-div">
+                <div class="labels">
+                    <label for="parola tekrar">Parola Tekrar</label>
+                </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Parola Tekrar" name="parola tekrar" id="par-tekrar">
+                </div>
+            </div>
+            <div id="send-form">
+                <input type="submit" value="Kaydet" id="kaydet">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $(function () {
+            $("#kaydet").click(function (event) {
+                if ($("#email").val() == "") {
+                    if (document.getElementById("val1") == null) {
+                        $("#alerts").append("<p id=\"val1\">Email alanı boş bırakılamaz.</p>");
+                    } 
+                } else {
+                    $("#val1").remove();
+                    if($("#email").val().split("@").length > 2)
+                        $("#alerts").append("<p id=\"val1\">Doğru olmayan e-mail</p>");
+                    else
+                        $("#val1").remove();
+                }
+                if ($("#tel").val() == "") {
+                    if (document.getElementById("val2") == null) {
+                        $("#alerts").append("<p id=\"val2\">Telefon alanı boş bırakılamaz.</p>");
+                    } 
+                } else {
+                    $("#val2").remove();
+                }
+                if ($("#par").val() == "") {
+                    if (document.getElementById("val3") == null) {
+                        $("#alerts").append("<p id=\"val3\">Parola alanı boş bırakılamaz.</p>");
+                    } 
+                } else {
+                    $("#val3").remove();
+                }
+                if ($("#par-tekrar").val() == "") {
+                    if (document.getElementById("val4") == null) {
+                        $("#alerts").append("<p id=\"val4\">Parola tekrarı alanı boş bırakılamaz.</p>");
+                    } 
+                } else {
+                    $("#val4").remove();
+                }
+                if($("#par").val() != "" && $("#par-tekrar").val() != ""){
+                    if($("#par").val() != $("#par-tekrar").val()){
+                        $("#alerts").append("<p id=\"val4\">Parolalar uyuşmuyor</p>");
+                    }else
+                        $("#val4").remove();
+                }
+                event.preventDefault();
+            });
+        });
+    </script>
+</body>
+
+</html>
